@@ -19,26 +19,23 @@ const images = [
   },
 ];
 
-const galleryList = document.querySelector('.gallery');
+const gallery = document.querySelector('.gallery');
 
-images.forEach((image) => {
-  const listItem = document.createElement('li');
-  listItem.classList.add('gallery-item');
- 
+const createGalleryItem = ({ url, alt, width, height }) => {
+  return `
+    <li class="gallery__item">
+      <img src="${url}" alt="${alt}" class="gallery__image" style="width: ${width}; height: ${height}">
+    </li>
+  `;
+};
 
-  const img = document.createElement('img');
-  img.src = image.url;
-  img.alt = image.alt;
-  img.style.width = image.width;
-  img.style.height = image.height;
+const galleryMarkup = images.map((image) => createGalleryItem(image)).join('');
 
-  listItem.appendChild(img);
-  galleryList.appendChild(listItem);
-});
+gallery.insertAdjacentHTML('beforeend', galleryMarkup);
 
-galleryList.style.display = 'flex';
-galleryList.style.listStyle = 'none';
-galleryList.style.margin = '0';
-galleryList.style.padding = '0';
-galleryList.style.justifyContent = 'space-between';
-galleryList.style.flexWrap = 'wrap';
+gallery.style.display = 'flex';
+gallery.style.listStyle = 'none';
+gallery.style.margin = '0';
+gallery.style.padding = '0';
+gallery.style.justifyContent = 'space-between';
+gallery.style.flexWrap = 'wrap';
