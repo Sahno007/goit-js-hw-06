@@ -25,7 +25,7 @@ function createBoxes(amount) {
   destroyBoxes();
 
   let size = 30;
-  const step = 10;
+  const step = 1;
   const fragment = document.createDocumentFragment();
 
   for (let i = 0; i < amount; i += step) {
@@ -34,7 +34,7 @@ function createBoxes(amount) {
     box.style.height = `${size}px`;
     box.style.backgroundColor = getRandomHexColor();
     fragment.appendChild(box);
-    size += step;
+    size += step; // Оновлюємо значення size після додавання кожного бокса
   }
 
   boxesContainer.appendChild(fragment);
